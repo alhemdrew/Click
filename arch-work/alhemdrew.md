@@ -1,8 +1,4 @@
 
-
-
-I would structure it as a **Community System**, rather than simply a “feed.”
-
 ## 1. The overall idea
 
 Think of the Community section as:
