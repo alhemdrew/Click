@@ -1,7 +1,5 @@
 
-Good day, Andrew. Yes — I understand what you’re trying to build.
 
-What you need right now is **not code**. You need a solid product/technical architecture for the **Community section** of an in-house school social platform: something with the interaction model of Facebook, but designed specifically around a school community.
 
 I would structure it as a **Community System**, rather than simply a “feed.”
 
