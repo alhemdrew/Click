@@ -1,978 +1,612 @@
 # CLICK — Cuddles Learning, Interaction & Community Konnect
 
-> **Architecture Research & Design Programme**
->
-> A student-led software architecture exercise for the development of **CLICK**, the school social platform for **Cuddles Chat**.
+> **Student Architecture Research & Design**
 
----
+## 1. About the Project
 
-## 1. Project Overview
-
-**CLICK** stands for:
+**CLICK** means:
 
 > **Cuddles Learning, Interaction & Community Konnect**
 
-CLICK is a school-focused social platform designed to provide a safe, structured digital space where students, teachers, and authorised school administrators can communicate, share content, participate in communities, and interact with one another.
+CLICK is a school social platform being designed and developed by students using **GitHub, VS Code, and GitHub Copilot**.
 
-The project is being developed by students as a practical learning experience in:
+The goal is not simply to make a website.
 
-* Software architecture
-* Product design
-* Research
-* Prompt engineering
-* AI-assisted development
-* Git and GitHub
-* VS Code
-* GitHub Copilot
-* Collaboration
-* Critical thinking
-* Responsible technology development
+The goal is to learn how a real software project is planned before it is built.
 
-### The Most Important Principle
-
-> **We do not begin by asking AI to build the entire application. We first decide what we are building and how it should work.**
-
-The architecture is the blueprint that guides development.
+Before we begin serious coding, we need a **blueprint** that explains what each part of CLICK should do and how the different parts should work together.
 
 ---
 
-# 2. Why Are We Designing the Architecture First?
+# 2. Why Are We Doing This?
 
-AI coding tools such as GitHub Copilot are powerful, but they do not automatically understand the complete vision of a project.
+AI coding tools can generate code very quickly.
 
-Without a clear architecture, an AI coding assistant may:
+However, if we do not first decide what we want to build, AI can:
 
-* Create duplicate features
-* Use inconsistent naming
-* Invent unnecessary components
-* Store data incorrectly
-* Create conflicting systems
-* Change previously established behaviour
-* Introduce technologies that do not belong in the project
-* Lose track of the original design as the codebase becomes larger
+* Create unnecessary features
+* Build things differently in different parts of the application
+* Duplicate existing features
+* Make assumptions about how the system should work
+* Change the original idea as development continues
 
-A documented architecture gives both the development team and AI coding assistants a reliable reference.
+Therefore, our process is:
 
-The CLICK architecture should therefore answer:
+```text
+IDEA
+  ↓
+RESEARCH
+  ↓
+DESIGN
+  ↓
+ARCHITECTURE
+  ↓
+REVIEW
+  ↓
+CODING
+  ↓
+TESTING
+  ↓
+IMPROVEMENT
+```
 
-> **What are we building?**
-
-> **Why are we building it this way?**
-
-> **How should the different parts communicate?**
-
-> **What rules must the system follow?**
-
----
-
-# 3. The Student Architecture Programme
-
-Each student will be responsible for researching and proposing the architecture of one section of CLICK.
-
-You are **not being asked to write the complete code for your section yet**.
-
-Your first responsibility is to understand the problem and design a sensible solution.
-
-Your work will eventually be reviewed with the rest of the class.
-
-The best ideas from different proposals may be combined into the final CLICK architecture.
-
-### Important
-
-Your proposal is **not automatically the final design**.
-
-You are expected to:
-
-1. Research.
-2. Ask questions.
-3. Explore alternatives.
-4. Use AI as a research assistant.
-5. Challenge AI-generated suggestions.
-6. Make your own decisions.
-7. Explain your reasoning.
-8. Present your architecture.
-9. Accept feedback.
-10. Improve the design.
+The architecture becomes a reference that both the students and GitHub Copilot can use during development.
 
 ---
 
-# 4. Student Assignments
+# 3. Student Sections
 
-| Student       | Assigned Section                                 | Difficulty  |
-| ------------- | ------------------------------------------------ | ----------- |
-| **Charles**   | Application Navigation & Overall User Experience | Medium      |
-| **Ogechukwu** | User Profiles & Student Identity                 | Medium      |
-| **Daniel**    | Authentication, Roles & Permissions              | Medium–High |
-| **David**     | Home Feed / Timeline                             | Medium–High |
-| **Ire**       | Chat & Messaging                                 | High        |
-| **Fumilayo**  | Communities / Groups                             | Medium–High |
-| **Kishi**     | Notifications                                    | Medium      |
-| **Kemi**      | Posts, Comments & Reactions                      | Medium      |
-| **Esther**    | Search                                           | **Light**   |
-| **Kitan**     | Media, Photos & File Sharing                     | Medium      |
-| **Komi**      | Reporting, Moderation & Safety                   | Medium–High |
+Each student will research and design one part of CLICK.
 
-### Special Note for Esther
+| Student       | Assigned Section                      |
+| ------------- | ------------------------------------- |
+| **David**     | Moderation, Reporting & Safety        |
+| **Daniel**    | Authentication, Accounts & User Roles |
+| **Ire**       | Chat & Messaging                      |
+| **Ogechukwu** | Profile & Personalization             |
+| **Fumilayo**  | Communities & Groups                  |
+| **Kishi**     | Notifications                         |
+| **Kitan**     | Media, Photos & File Sharing          |
+| **Charles**   | Home Page & Navigation                |
+| **Kemi**      | Posts, Comments & Reactions           |
+| **Komi**      | Announcements & School Updates        |
+| **Esther**    | Search & Finding Content              |
 
-Esther's assignment is intentionally smaller in scope.
+This gives us different parts of the application that can eventually be brought together into one architecture.
 
-The goal is for her to produce a clear and understandable architecture without being overloaded with complex system design.
+---
 
-Her section should focus on:
+# 4. What Each Section Means
+
+## David — Moderation, Reporting & Safety
+
+Research how CLICK can remain a safe school environment.
+
+Consider:
+
+* Reporting a post or user
+* Reporting inappropriate content
+* What happens after something is reported
+* Moderator actions
+* Blocking users
+* Removing inappropriate content
+* Basic safety rules
+
+---
+
+## Daniel — Authentication, Accounts & User Roles
+
+Research how users enter and use CLICK.
+
+Consider:
+
+* Creating an account
+* Logging in
+* Logging out
+* Password recovery
+* Student accounts
+* Teacher accounts
+* Administrator accounts
+* What different users are allowed to do
+
+---
+
+## Ire — Chat & Messaging
+
+Research how communication between users could work.
+
+Consider:
+
+* One-to-one chat
+* Group conversations
+* Sending messages
+* Receiving messages
+* Message timestamps
+* Read/unread messages
+* Basic chat interface
+
+---
+
+## Ogechukwu — Profile & Personalization
+
+Research how users can make CLICK feel personal to them.
+
+Consider:
+
+* Profile photo
+* Display name
+* Bio/about section
+* Profile layout
+* Profile information
+* Theme preferences
+* Appearance/customization
+* What parts of the profile a user can edit
+* What information should remain private
+
+Think about:
+
+> **"If I open my CLICK profile, what should I be able to see and change?"**
+
+---
+
+## Fumilayo — Communities & Groups
+
+Research how students and teachers could interact around shared interests or activities.
+
+Consider:
+
+* Creating communities
+* Joining communities
+* Community members
+* Community posts
+* Community information
+* Community administrators
+* Leaving a community
+
+---
+
+## Kishi — Notifications
+
+Research how CLICK should tell users when something happens.
+
+Consider:
+
+* New messages
+* Comments
+* Reactions
+* Community invitations
+* School announcements
+* Read/unread notifications
+
+---
+
+## Kitan — Media, Photos & File Sharing
+
+Research how users can share media within CLICK.
+
+Consider:
+
+* Uploading images
+* Viewing images
+* Sharing files
+* Profile pictures
+* File size limitations
+* Supported file types
+* Removing uploaded media
+
+---
+
+## Charles — Home Page & Navigation
+
+Research how users move around CLICK.
+
+Consider:
+
+* Home page
+* Navigation menu
+* Main sections
+* Mobile navigation
+* Desktop navigation
+* Where Chat should appear
+* Where Communities should appear
+* Where Notifications should appear
+* How users return to the home page
+
+Think about:
+
+> **"When someone opens CLICK, how do we help them understand where everything is?"**
+
+---
+
+## Kemi — Posts, Comments & Reactions
+
+Research how users share and interact with content.
+
+Consider:
+
+* Creating a post
+* Editing a post
+* Deleting a post
+* Comments
+* Likes/reactions
+* Viewing posts
+* Basic post privacy
+
+---
+
+## Komi — Announcements & School Updates
+
+Research a simple system for important information from the school.
+
+Consider:
+
+* School announcements
+* Announcement title
+* Announcement message
+* Date
+* Who can create announcements
+* Where students see announcements
+* Reading an announcement
+
+Keep the design simple and focused.
+
+---
+
+## Esther — Search & Finding Content
+
+Research how users can find things inside CLICK.
+
+Consider:
 
 * Searching for users
 * Searching for posts
 * Searching for communities
 * Search results
-* Basic filters
-* Search interface
+* Basic filtering
 
-She is **not expected to design a complex search engine or search infrastructure**.
+The focus is simply:
 
----
-
-# 5. What Does "Architecture" Mean?
-
-Architecture is the blueprint of a software system.
-
-Think about constructing a building.
-
-Before constructing the building, you need to know:
-
-* Where the rooms will be
-* Where the doors will go
-* Where electricity will run
-* Where water will run
-* How the rooms connect
-* What materials are required
-
-Software works in a similar way.
-
-Before writing thousands of lines of code, we need to understand:
-
-* What features exist
-* What screens exist
-* What data exists
-* Who can access what
-* How different features communicate
-* What happens when something goes wrong
-* What security rules exist
-
-Your architecture is therefore more than a drawing.
-
-It is a **technical explanation of how your section should work**.
+> **"How can a user quickly find something inside CLICK?"**
 
 ---
 
-# 6. What Every Student Must Research
+# 5. What You Need to Produce
 
-Every student should answer the following questions about their assigned section.
+You do **not** need to write code yet.
 
-## 6.1 Purpose
+For your assigned section, prepare a short architecture proposal containing:
 
-What is this section supposed to accomplish?
+### 1. Purpose
 
-Example:
+What is your section supposed to do?
 
-> The chat system allows students and authorised users to communicate through private and group conversations.
+### 2. Users
 
----
+Who will use it?
 
-## 6.2 Target Users
-
-Who will use this feature?
-
-Possible users include:
-
-* Students
-* Teachers
-* School administrators
-* Moderators
-
-Not every feature must be available to every user.
-
----
-
-## 6.3 Features
+### 3. Features
 
 What should users be able to do?
 
-For example, a chat system might contain:
+### 4. User Flow
 
-* Start a conversation
-* Send a message
-* Receive a message
-* Create a group conversation
-* Delete a message
-* See message timestamps
-* See read status
+Show what happens when someone uses it.
 
-Do not assume that every possible feature belongs in CLICK.
-
-Research and explain which features are actually useful.
-
----
-
-## 6.4 User Flow
-
-Explain what happens when a user performs an action.
-
-For example:
+Example:
 
 ```text
-Student opens CLICK
-        ↓
-Student opens Chat
-        ↓
-Student selects another user
-        ↓
-Conversation opens
-        ↓
-Student writes a message
-        ↓
-Message is submitted
-        ↓
-Server validates the request
-        ↓
-Message is stored
-        ↓
-Recipient receives the message
+Open Chat
+   ↓
+Choose a person
+   ↓
+Open conversation
+   ↓
+Write message
+   ↓
+Send message
+   ↓
+Message appears in conversation
 ```
 
-Your user flow should explain the journey from beginning to end.
+### 5. UI Idea
 
----
+Draw or design what you think the feature could look like.
 
-# 7. Interface / UI Proposal
+You can use:
 
-You should propose what your feature could look like.
-
-You may use:
-
-* Paper sketches
+* Paper
 * Figma
 * Canva
 * PowerPoint
-* Draw.io
-* Other suitable design tools
+* Any suitable design tool
 
-Your design does **not** need to be beautiful.
+### 6. Information / Data
 
-It needs to communicate your idea clearly.
+What information does your section need?
 
-For example:
-
-```text
-┌─────────────────────────────────────┐
-│ CLICK                     🔔    👤  │
-├─────────────────────────────────────┤
-│ 🔍 Search conversations             │
-├─────────────────────────────────────┤
-│                                     │
-│ 👤 David                            │
-│    Are you coming tomorrow?         │
-│                                     │
-│ 👤 Charles                          │
-│    Check the assignment             │
-│                                     │
-├─────────────────────────────────────┤
-│ Home    Chat    Community    Me     │
-└─────────────────────────────────────┘
-```
-
-This is only an example.
-
-**You are encouraged to create your own design.**
-
----
-
-# 8. Data Architecture
-
-Every feature needs information to work.
-
-Ask yourself:
-
-> **What information does my feature need to store?**
-
-For example, a messaging system may need:
+Example:
 
 ```text
-USER
-────
-id
-name
-profile_photo
-
-CONVERSATION
-────────────
-id
-created_at
-
-CONVERSATION_MEMBER
-───────────────────
-conversation_id
-user_id
-
-MESSAGE
-───────
-id
-conversation_id
-sender_id
-content
-created_at
-read_at
+Message
+- sender
+- receiver
+- message
+- date
+- time
 ```
 
-You do not need to know advanced SQL to complete this exercise.
+### 7. Connection to Other Sections
 
-Your responsibility is to identify:
+Explain what other parts of CLICK your feature might connect with.
 
-* What information exists
-* What each piece of information means
-* How different pieces of information relate
+### 8. Safety / Privacy
 
----
+Think about what information should be protected and who should be allowed to perform certain actions.
 
-# 9. Example Relationship
+### 9. Your Final Idea
 
-A chat architecture might look like:
-
-```text
-USER
-  │
-  ├───────────────┐
-  │               │
-  ↓               ↓
-CONVERSATION_MEMBER
-  │
-  ↓
-CONVERSATION
-  │
-  ↓
-MESSAGE
-  ↑
-  │
-USER
-```
-
-Your own section may have a completely different structure.
+Explain why you think your design is a good choice.
 
 ---
 
-# 10. Connections to Other CLICK Systems
+# 6. You May Use AI
 
-No major feature should be designed as if it exists alone.
-
-Ask:
-
-> **Which other parts of CLICK will my feature communicate with?**
-
-For example:
-
-```text
-Posts ───────────┐
-Messages ────────┤
-Communities ─────┼──→ Notifications
-Administration ──┘
-```
-
-A post might generate a notification.
-
-A message might generate a notification.
-
-A community invitation might generate a notification.
-
-Therefore, the notification system needs to communicate with those systems.
-
-This is why we need a **unified architecture**.
-
----
-
-# 11. Security & Privacy
-
-Every student must consider security.
-
-Ask questions such as:
-
-* Who is allowed to use this feature?
-* Who can see the information?
-* Who can create information?
-* Who can edit it?
-* Who can delete it?
-* What happens if someone tries to access another user's information?
-* What data should remain private?
-* What should teachers be allowed to do?
-* What should administrators be allowed to do?
-* What should students not be allowed to do?
-
-Security should not be something we add after building the application.
-
-> **Security should be considered during architecture.**
-
----
-
-# 12. Edge Cases
-
-A good architecture also considers situations where things do not go normally.
-
-For example:
-
-### What if:
-
-* The user has no internet connection?
-* The message fails to send?
-* A user deletes their account?
-* A post is deleted?
-* A user is blocked?
-* A community is removed?
-* A file is too large?
-* A user attempts an action they are not authorised to perform?
-* Two users perform conflicting actions at the same time?
-
-You do not need to solve every problem.
-
-You should demonstrate that you have **thought about the problems**.
-
----
-
-# 13. Using AI for Research
-
-AI tools are allowed and encouraged.
+You are encouraged to use AI during your research.
 
 You may use:
 
 * ChatGPT
-* Microsoft Copilot
+* GitHub Copilot
 * Gemini
 * Claude
-* Other appropriate AI tools
+* Other suitable AI tools
 
-However:
+But remember:
 
-> **AI is your assistant, not your architect.**
+> **AI helps you think. It does not replace your thinking.**
 
-Do not simply ask:
+Do not simply copy an AI answer.
 
-> "Build me a chat system."
-
-and copy the answer.
-
-Instead, use AI to:
-
-* Understand concepts
-* Compare approaches
-* Find possible problems
-* Explain unfamiliar technologies
-* Challenge your ideas
-* Suggest alternatives
-* Help you improve your architecture
-
-Then make your own decisions.
+Ask questions, compare ideas, and decide what makes sense for CLICK.
 
 ---
 
-# 14. Recommended AI Research Prompt
+# 7. Suggested Research Prompt
 
-You may use the following prompt as a starting point.
+You can give your AI assistant this prompt and modify it for your section:
 
 ```text
-You are a software architect helping me research one module of a
-school social networking application called CLICK.
+I am a student helping to design a school social platform called
+CLICK — Cuddles Learning, Interaction & Community Konnect.
 
-CLICK stands for:
-Cuddles Learning, Interaction & Community Konnect.
+My assigned section is:
 
-The application is intended for students, teachers and authorised
-school administrators.
+[INSERT YOUR SECTION]
 
-The module I am researching is:
+Help me research how this type of feature could work.
 
-[INSERT YOUR MODULE]
+Explain:
 
-Help me understand:
+1. What the feature should do
+2. Who should use it
+3. Important features
+4. A simple user flow
+5. What information it needs
+6. What the interface could contain
+7. How it could connect with other parts of the application
+8. Basic security and privacy concerns
+9. Common mistakes to avoid
 
-1. What is the purpose of this module?
-2. Who should use it?
-3. What features should it contain?
-4. What are the important user flows?
-5. What data would the system need?
-6. What database entities might be required?
-7. What screens and UI components might be required?
-8. How should this module communicate with other modules?
-9. What security and privacy issues should we consider?
-10. What edge cases should we consider?
-11. What are two or three possible architectural approaches?
-12. What are the advantages and disadvantages of each approach?
-13. What common mistakes should we avoid?
+Give me different ideas where appropriate.
 
-Do not assume that the first solution is automatically correct.
-Explain your reasoning and give me alternatives so that I can
-create my own architecture.
+Do not simply design everything for me. Help me understand the
+options so that I can create my own architecture.
 ```
 
 ---
 
-# 15. Challenge the AI
+# 8. Challenge Your AI
 
-After receiving an AI response, **do not immediately accept it**.
+After your AI gives you an answer, don't immediately accept it.
 
-Find at least three things that:
+Ask yourself:
 
-* You disagree with
-* You do not understand
-* You think could be improved
-* You think may not be suitable for a school environment
+> **Do I agree with this?**
 
-Then ask the AI about them.
+> **Why did the AI suggest this?**
 
-For example:
+> **Could there be a better approach?**
 
-```text
-You suggested allowing students to create unlimited group chats.
+> **Would this actually work for students and teachers?**
 
-I am concerned that this could create moderation problems in a
-school environment.
+You should be able to identify at least a few things you would:
 
-What alternative approaches could we use?
+* Keep
+* Change
+* Remove
+* Add
 
-Compare the options and explain the security and moderation
-implications.
-```
-
-This is an important part of the exercise.
-
-### Prompt engineering is not simply asking AI questions.
-
-It also means knowing enough to:
-
-> **Question the answer.**
+This is part of learning **prompt engineering and critical thinking**.
 
 ---
 
-# 16. Required Architecture Submission
+# 9. Sample Architecture
 
-Every student must submit their work using this structure.
-
-```text
-# [MODULE NAME]
-
-## 1. Purpose
-
-What does this module do?
-
-## 2. Target Users
-
-Who can use it?
-
-## 3. Features
-
-What can users do?
-
-## 4. User Flows
-
-How does the user interact with it?
-
-## 5. UI / Screen Proposal
-
-What screens and components are required?
-
-## 6. Data Requirements
-
-What information does the system need?
-
-## 7. Database Proposal
-
-What entities/tables might be required?
-
-## 8. Architecture Diagram
-
-Show how the components connect.
-
-## 9. Connections to Other Modules
-
-Which CLICK systems does this module communicate with?
-
-## 10. Security & Privacy
-
-What security rules should exist?
-
-## 11. Edge Cases
-
-What could go wrong?
-
-## 12. Design Decisions
-
-Explain why you selected your approach.
-
-## 13. Alternatives Considered
-
-What other approaches did you consider?
-
-## 14. AI Research
-
-Which AI tools did you use?
-
-## 15. AI Prompts
-
-Show important prompts used during research.
-
-## 16. What I Changed or Rejected
-
-Explain what you disagreed with or changed from the AI suggestions.
-
-## 17. Final Proposed Architecture
-
-Present your final design.
-```
-
----
-
-# 17. Sample Completed Architecture
-
-> **This is an example only. Do not copy it as your own architecture.**
-
-## Notification System
+Here is a simple example for a **Notification System**.
 
 ### Purpose
 
-The notification system informs users when something relevant happens to their account or activity.
+To tell users when something important happens.
 
-### Users
-
-* Students
-* Teachers
-* Administrators
-
-### Possible Notification Events
+### Features
 
 ```text
-Someone comments on your post
-        ↓
-Notification created
-
-Someone reacts to your post
-        ↓
-Notification created
-
-You receive a message
-        ↓
-Notification created
-
-You are invited to a community
-        ↓
-Notification created
+New message
+Comment
+Reaction
+Community invitation
+School announcement
 ```
 
-### Proposed Data
+### Simple Flow
 
 ```text
-NOTIFICATION
-─────────────
-id
-recipient_id
+Someone sends you a message
+          ↓
+CLICK detects the event
+          ↓
+Notification is created
+          ↓
+User sees notification
+          ↓
+User opens it
+          ↓
+User sees the related content
+```
+
+### Possible Data
+
+```text
+Notification
+────────────
+user
 type
-title
 message
-reference_id
-is_read
-created_at
+read/unread
+date
 ```
 
-### Possible Types
+### Possible UI
 
 ```text
-COMMENT
-REACTION
-MESSAGE
-COMMUNITY_INVITE
-ANNOUNCEMENT
+┌───────────────────────────────┐
+│ Notifications                 │
+├───────────────────────────────┤
+│ ● David commented on your post│
+│   5 minutes ago               │
+│                               │
+│ ● You have a new message      │
+│   from Charles                │
+│                               │
+│ ○ New school announcement     │
+└───────────────────────────────┘
 ```
 
-### UI Example
+This is only a **sample**.
 
-```text
-┌────────────────────────────────────┐
-│ Notifications                      │
-├────────────────────────────────────┤
-│ ● David commented on your post     │
-│   5 minutes ago                    │
-│                                    │
-│ ● You received a message from      │
-│   Charles                          │
-│   15 minutes ago                   │
-│                                    │
-│ ○ New announcement from Cuddles    │
-│   School                           │
-└────────────────────────────────────┘
-```
-
-### Connections
-
-```text
-Posts ───────────┐
-Messages ────────┤
-Communities ─────┼──→ Notifications
-Administration ──┘
-```
-
-### Security
-
-* Users should only see their own notifications.
-* Students should not be able to create administrative notifications.
-* Notification links should not expose private content.
-* Deleted content should not leave broken or misleading references.
+Your own architecture should reflect your own research and ideas.
 
 ---
 
-# 18. The Bigger CLICK Architecture
+# 10. How Everything Will Come Together
 
-Eventually, everyone's individual work should connect into one system.
-
-A simplified conceptual architecture may look like:
+Each student's work is one piece of the larger CLICK system.
 
 ```text
                          CLICK
                            │
-          ┌────────────────┼────────────────┐
-          │                │                │
-        USERS            CONTENT      COMMUNICATION
-          │                │                │
-          │                │                ├── Chat
-          │                │                └── Notifications
-          │                │
-          ├── Profiles     ├── Posts
-          ├── Authentication
-          ├── Roles        ├── Comments
-          └── Permissions  ├── Reactions
-                           └── Media
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+      USERS             CONTENT          COMMUNICATION
+        │                  │                  │
+     Profiles            Posts              Chat
+     Accounts            Comments           Notifications
+     Roles               Reactions
+     Customization       Media
 
-          ┌────────────────┼────────────────┐
-          │                │                │
-      COMMUNITY          SEARCH          SAFETY
-          │                │                │
-       Groups           Users           Reports
-       Members          Posts           Moderation
-       Activities       Groups          Administration
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+   COMMUNITIES          SEARCH             SAFETY
+        │                  │                  │
+      Groups             Users             Reports
+      Members            Posts             Moderation
+      Activities         Groups            Protection
 ```
 
-Underneath these modules will be the common technical layers:
-
-```text
-                         CLICK
-                           │
-                       Frontend
-                           │
-                        API Layer
-                           │
-                        Backend
-                           │
-                        Database
-                           │
-                 Authentication / Roles
-                           │
-                    Security / Rules
-```
-
-This is a conceptual example.
-
-The final architecture will be created from the students' research and the team's decisions.
+The final architecture will be created after everyone's work has been reviewed.
 
 ---
 
-# 19. Important Rule: One Application, One Architecture
+# 11. One Project, One Architecture
 
-Students should not independently create completely different technology stacks.
+Everyone is designing a **part of the same application**.
 
-For example, we should avoid a situation where:
+Therefore, your section must eventually fit into the larger CLICK system.
 
-```text
-Charles → React
-Daniel → Vue
-David → Angular
-Ire → PHP
-Fumilayo → Firebase
-Kishi → Supabase
-```
+Do not independently decide that your section should use a completely different technology from everyone else.
 
-That would create an inconsistent application.
+The main technology choices will be agreed upon by the project team.
 
-The development team will establish the **global technology architecture**.
-
-Individual students are responsible for designing their assigned module **within the agreed architecture**.
+Your job is to design **how your section should work within CLICK**.
 
 ---
 
-# 20. Expected Future Repository Structure
+# 12. Future Development
 
-As the project develops, the architecture documentation may eventually look something like:
+Once the architecture has been reviewed and approved, we can begin implementation.
+
+The process will become:
 
 ```text
-CLICK/
-│
-├── README.md
-│
-├── docs/
-│   │
-│   ├── architecture/
-│   │   ├── overview.md
-│   │   ├── navigation.md
-│   │   ├── authentication.md
-│   │   ├── profiles.md
-│   │   ├── feed.md
-│   │   ├── posts.md
-│   │   ├── comments.md
-│   │   ├── reactions.md
-│   │   ├── chat.md
-│   │   ├── communities.md
-│   │   ├── notifications.md
-│   │   ├── search.md
-│   │   ├── media.md
-│   │   └── moderation.md
-│   │
-│   ├── database/
-│   │   └── schema.md
-│   │
-│   ├── api/
-│   │   └── endpoints.md
-│   │
-│   └── decisions/
-│       └── architecture-decisions.md
-│
-├── apps/
-│
-├── packages/
-│
-└── .github/
-    └── copilot-instructions.md
+Student Research
+       ↓
+Architecture
+       ↓
+Class Review
+       ↓
+Final CLICK Blueprint
+       ↓
+GitHub Documentation
+       ↓
+VS Code Development
+       ↓
+GitHub Copilot
+       ↓
+Testing
+       ↓
+Improvement
 ```
 
-The exact structure may change as the project evolves.
-
-The important idea is that the architecture should remain **documented, discoverable, and connected to the codebase**.
+The architecture documentation will eventually help GitHub Copilot understand the project instead of forcing it to guess.
 
 ---
 
-# 21. GitHub Copilot and the Architecture
+# 13. Final Checklist
 
-Once the architecture has been reviewed and approved, it can become a source of truth for development.
+Before submitting your work, make sure you have:
 
-For example, the repository may eventually contain:
-
-```text
-.github/
-└── copilot-instructions.md
-```
-
-The instructions can tell Copilot things such as:
-
-```text
-You are contributing to CLICK:
-Cuddles Learning, Interaction & Community Konnect.
-
-Follow the architecture documented in /docs/architecture/.
-
-Do not introduce a new technology without approval.
-
-Do not create duplicate systems when an existing module
-already provides the required functionality.
-
-Follow the database conventions documented in /docs/database/.
-
-Follow the security and role rules defined by the project.
-
-Before making significant architectural changes, inspect the
-relevant architecture documentation.
-```
-
-This allows the architecture created by the students to become part of the development workflow.
+* [ ] Researched my assigned section
+* [ ] Explained its purpose
+* [ ] Identified the users
+* [ ] Listed important features
+* [ ] Created at least one user flow
+* [ ] Designed a basic UI idea
+* [ ] Identified the information/data required
+* [ ] Explained connections to other sections
+* [ ] Considered basic security/privacy
+* [ ] Used AI responsibly where useful
+* [ ] Questioned or improved some AI suggestions
+* [ ] Explained my final design
 
 ---
 
-# 22. What We Are Actually Learning
+# 14. The Principle
 
-This project is not only about building a school social platform.
+> **Think before you prompt.**
+>
+> **Research before you build.**
+>
+> **Design before you code.**
+>
+> **Question AI before you trust it.**
 
-Students are learning how professional software development works.
+CLICK is not just about getting AI to write code.
 
-The workflow is:
-
-```text
-                    IDEA
-                      ↓
-                  RESEARCH
-                      ↓
-                AI ASSISTANCE
-                      ↓
-             CRITICAL THINKING
-                      ↓
-                 ARCHITECTURE
-                      ↓
-                   REVIEW
-                      ↓
-              UNIFIED BLUEPRINT
-                      ↓
-              DOCUMENTATION
-                      ↓
-                   CODING
-                      ↓
-              TESTING & REVIEW
-                      ↓
-              IMPROVEMENT
-```
-
-The goal is not:
-
-> **"Let AI build everything."**
-
-The goal is:
-
-> **"Understand what we want, design it properly, and use AI to help us build it."**
-
----
-
-# 23. Final Student Checklist
-
-Before submitting your architecture, make sure you can answer **YES** to these questions:
-
-* [ ] I understand my assigned module.
-* [ ] I researched how similar systems work.
-* [ ] I used AI as a research assistant where useful.
-* [ ] I did not blindly copy AI-generated content.
-* [ ] I can explain my design.
-* [ ] I identified the main users.
-* [ ] I identified the major features.
-* [ ] I created the important user flows.
-* [ ] I considered the required UI.
-* [ ] I identified the important data.
-* [ ] I proposed the required database entities.
-* [ ] I considered how my module connects to other modules.
-* [ ] I considered security and privacy.
-* [ ] I considered possible edge cases.
-* [ ] I considered alternative approaches.
-* [ ] I explained why I selected my final approach.
-* [ ] I documented the important AI prompts I used.
-* [ ] I identified ideas from AI that I changed or rejected.
-* [ ] I can present and defend my architecture to the class.
-
----
-
-# 24. Final Principle
-
-## **Think before you prompt.**
-
-## **Research before you build.**
-
-## **Design before you code.**
-
-## **Question AI before you trust it.**
-
-## **Document before the project becomes complicated.**
-
-> **CLICK is not just a coding project. It is an opportunity to learn how real software systems are thought about, designed, built, tested, and improved.**
+It is about learning how to **think like the people who design the software before the software is built.**
 
 ---
 
 **Project:** CLICK
 **Full Name:** Cuddles Learning, Interaction & Community Konnect
-**Environment:** GitHub + VS Code + GitHub Copilot
-**Approach:** Student-led research → Architecture → Review → Unified Blueprint → AI-assisted development
+**Tools:** GitHub · VS Code · GitHub Copilot
+**Method:** Research → Architecture → Review → Development → Testing
