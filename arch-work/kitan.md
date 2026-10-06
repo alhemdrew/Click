@@ -1,7 +1,7 @@
-Kitan — Media, Photos & File Sharing
+Media, Photos & File Sharing
 1. The overall idea
 
-Think of Kitan as the media and file-sharing system of CLICK.
+Think of KITAN as the media and file-sharing system of CLICK.
 
 It answers three fundamental questions:
 
@@ -38,7 +38,7 @@ It provides the infrastructure for storing, displaying, sharing, and controlling
 
 2. What can users share?
 
-Kitan could support several types of content:
+KITAN could support several types of content:
 
 MEDIA
 │
@@ -68,7 +68,7 @@ User
   ↓
 Select file
   ↓
-Kitan receives file
+KITAN receives file
   ↓
 Validate file
   ↓
@@ -88,7 +88,7 @@ Student
    ↓
 Selects photo
    ↓
-Kitan
+KITAN
    ↓
 Photo stored
    ↓
@@ -136,7 +136,7 @@ The actual file and the information about the file should be treated separately.
 
 5. Storage
 
-Kitan needs somewhere to keep uploaded files.
+KITAN needs somewhere to keep uploaded files.
 
 A simple architecture could be:
 
@@ -180,7 +180,7 @@ The storage_key points to where the actual file is stored.
 
 6. Sharing media
 
-Kitan becomes particularly useful when media can be shared throughout CLICK.
+KITAN becomes particularly useful when media can be shared throughout CLICK.
 
 A user could:
 
@@ -232,7 +232,7 @@ Post media
 
 Not every file should automatically be visible to everyone.
 
-Kitan could use visibility levels such as:
+KITAN could use visibility levels such as:
 
 VISIBILITY
 │
@@ -262,9 +262,9 @@ Student uploads profile photo
 
 The exact visibility model can be decided by the team.
 
-8. How Kitan connects to CLICK
+8. How KITAN connects to CLICK
 
-Kitan should function as infrastructure underneath other CLICK features.
+KITAN should function as infrastructure underneath other CLICK features.
 
                          CLICK
                            │
@@ -321,7 +321,7 @@ Group Post
 
 This means the other CLICK systems don't need to manage actual files themselves.
 
-They simply reference Kitan media records.
+They simply reference KITAN media records.
 
 9. Basic database structure
 
@@ -366,7 +366,7 @@ media_links
 ├── target_type
 └── target_id
 
-media_links could allow Kitan to connect media to different CLICK features.
+media_links could allow KITAN to connect media to different CLICK features.
 
 For example:
 
@@ -381,11 +381,11 @@ target_type: message
 target_id: 789
 10. Security & privacy
 
-Because Kitan handles user files, security should be considered from the beginning.
+Because KITAN handles user files, security should be considered from the beginning.
 
 File validation
 
-Kitan should check:
+KITAN should check:
 
 File
  ↓
@@ -407,7 +407,7 @@ For example:
 
 User requests file
         ↓
-Kitan checks:
+KITAN checks:
         ↓
 Does this user have access?
         │
@@ -426,9 +426,9 @@ Private files should not simply have publicly guessable storage URLs.
 The application should control access to protected media.
 
 11. Common mistakes
-❌ Treating Kitan as just an upload button
+❌ Treating KITAN as just an upload button
 
-Kitan needs to handle:
+KITAN needs to handle:
 
 Uploading
 Storage
@@ -464,7 +464,7 @@ Without limits, users could upload extremely large files and consume unnecessary
 
 12. Possible architecture
 
-A basic Kitan architecture could eventually look like:
+A basic KITAN architecture could eventually look like:
 
                          CLICK
                            │
@@ -539,7 +539,7 @@ Referenced
 Deleted
    ↓
 Removed from storage
-The key idea for Kitan
+The key idea for KITAN
 
 If the Authentication & Accounts section is the identity foundation underneath CLICK, then Kitan is the media foundation underneath CLICK.
 
