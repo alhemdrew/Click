@@ -1,294 +1,126 @@
-1. Introduction
-
-The Communities & Groups feature will allow students and teachers at Cuddles to connect with others who share similar interests, hobbies, subjects, or activities.
-
-Users will be able to create communities, join existing ones, participate in discussions, view community information, and interact with other members.
-
-The purpose is to encourage learning, teamwork, creativity, and communication within the school community.
-
-2. Main Objectives
-
-The Communities & Groups feature aims to:
-
-Help students and teachers connect through shared interests.
-Provide organised spaces for discussions and collaboration.
-Allow users to create and manage communities.
-Make it easy to discover and join relevant communities.
-Encourage respectful and safe interactions.
-Support school clubs, academic groups, and extracurricular activities.
-3. Creating Communities
-Description
-
-Users should be able to create communities based on interests, subjects, clubs, or activities.
-
-Proposed Requirements
-Users should be able to enter a community name and description.
-Users should be able to select a category.
-Each community should have a unique identifier.
-The person who creates a community should initially become its administrator.
-Community creators should be able to edit community information if they have the required permissions.
-The system should prevent invalid or duplicate community creation where necessary.
-Example
-
-A student creates a community called "Young Programmers" for students interested in learning programming and developing projects together.
-
-4. Joining Communities
-Description
-
-Users should be able to discover and join communities that interest them.
-
-Proposed Requirements
-Users should be able to browse available communities.
-Users should be able to view community information before joining.
-The system should support open communities and, if approved by the project team, communities requiring administrator approval.
-Users should not be able to join the same community multiple times.
-The system should update membership information when someone joins.
-Users should receive clear feedback when their join request succeeds or fails.
-Example
-
-A student finds the Young Programmers community and selects "Join Community."
-
-If membership is open, the student becomes a member immediately. If approval is required, the student receives a pending status until an administrator makes a decision.
-
-5. Community Members
-Description
-
-Each community should have a members section showing the people who belong to it.
-
-Proposed Requirements
-Members should be able to view the community's member list, subject to its privacy settings.
-The list should display appropriate profile information, such as usernames and profile pictures.
-Community roles should be clearly identified where appropriate.
-The system should keep membership records accurate.
-Members who leave should no longer appear as active members.
-Only authorised users should be able to perform membership-management actions.
-Example
-
-The Young Programmers community displays its members, including students and teachers who have joined.
-
-6. Community Posts
-Description
-
-Community posts will allow members to share ideas, questions, updates, and information related to the community.
-
-Proposed Requirements
-Authorised members should be able to create community posts.
-Posts should identify their authors and display their publication dates.
-Members should be able to view posts they have permission to access.
-The platform should reuse CLICK's shared Posts, Comments & Reactions features rather than create a separate, duplicate posting system.
-Community posts should follow CLICK's moderation and safety rules.
-The system should respect the permissions of users who create, edit, or remove posts.
-Example
-
-A member of the Young Programmers community creates a post asking if anyone wants to collaborate on a JavaScript game.
-
-Other members can participate using the platform's approved interaction features.
-
-7. Community Information
-Description
-
-Every community should have an information page explaining its purpose and important details.
-
-Proposed Requirements
-
-A community information page should support:
-
-Community name.
-Description.
-Category.
-Administrator information.
-Membership information.
-Community rules.
-Creation date, if needed.
-Membership settings, where appropriate.
-
-Authorised administrators should be able to update community information.
-
-Users should be able to view the information they need to decide whether the community is suitable for them.
-
-8. Community Administrators
-Description
-
-Community administrators will be responsible for managing their communities and helping members follow the rules.
-
-Proposed Requirements
-The community creator should initially become an administrator.
-The system should support authorised administrators managing community information.
-Administrators should be able to manage membership according to their permissions.
-Administrators should be able to use the platform's approved moderation tools.
-The system should support more than one administrator if the project team approves this feature.
-Administrative permissions should be separate from ordinary membership permissions.
-The system should prevent a community from being left without an administrator.
-Changes to administrator roles should be restricted to authorised users.
-Example
-
-An administrator updates the community description and handles a report about an inappropriate post using CLICK's moderation system.
-
-9. Leaving a Community
-Description
-
-Members should be able to leave communities they no longer wish to participate in.
-
-Proposed Requirements
-Members should have access to a "Leave Community" option.
-The system should update the membership record after a successful departure.
-Users should receive confirmation that they have left.
-Leaving should remove the user's membership permissions.
-The system should define what happens to posts the user created before leaving.
-Administrators should be required to transfer their responsibilities or arrange another administrator before leaving, if they are the last administrator.
-Example
-
-A student selects "Leave Community" and confirms their decision. The system removes their active membership while preserving existing posts according to the platform's agreed content policy.
-
-10. User Roles and Permissions
-
-The following permissions are proposed for team review.
-
-Ordinary Member
-View community information they are permitted to access.
-Participate in community discussions.
-View the member list where permitted.
-Leave the community.
-Community Administrator
-Perform ordinary member activities.
-Edit community information.
-Manage membership within their authority.
-Use approved community-management and moderation tools.
-Assign or transfer administrator responsibilities if authorised.
-Student or Teacher Who Has Not Joined
-Discover communities available to them.
-View information permitted by the community's privacy settings.
-Join open communities or request membership where required.
-Platform Administrator or Authorised Moderator
-Carry out platform-wide or moderation duties according to their assigned permissions.
-Handle reported content through CLICK's shared moderation system.
-
-A person's school role and their role within an individual community should be treated separately. For example, being a teacher should not automatically grant someone administrator permissions in every community.
-
-11. Connections to Other CLICK Features
-
-The Communities & Groups feature must work with the other parts of CLICK.
-
-Authentication, Accounts & User Roles
-
-The system must identify the signed-in user and verify their permissions before allowing protected actions.
-
-Profile & Personalization
-
-Community pages may display appropriate profile information from the shared profile system.
-
-Posts, Comments & Reactions
-
-Community discussions should use the shared content and interaction features.
-
-Moderation, Reporting & Safety
-
-Community content and member interactions should follow CLICK's safety rules and reporting process.
-
-Notifications
-
-The platform may notify users about relevant community activity, depending on the agreed notification features and user settings.
-
-Media, Photos & File Sharing
-
-Community posts may support permitted images and files if the shared media system allows them.
-
-Search & Finding Content
-
-Users should be able to discover communities through the shared search system.
-
-Home Page & Navigation
-
-Users should have a clear way to access the Communities section.
-
-These connections should be agreed upon by the relevant section owners before implementation.
-
-12. Data Requirements
-
-The system will need to store information about communities and their members.
-
-Community
-Unique community ID.
-Community name.
-Description.
-Category.
-Creator or original owner ID.
-Creation date.
-Membership settings.
-Community status.
-Membership
-Community ID.
-User ID.
-Community role.
-Date joined.
-Membership status.
-Community Posts
-
-Community posts should use CLICK's shared post system, with a reference connecting each post to the relevant community.
-
-The exact fields should be agreed upon with the Posts, Comments & Reactions section owner.
-
-Administrator Information
-
-Administrator roles should be linked to the relevant user and community, rather than stored as an unverified label.
-
-The final database structure should be designed with the project's architecture team.
-
-13. Safety and Privacy
-
-Because CLICK is a school social platform, communities should be designed with student safety in mind.
-
-Proposed safeguards include:
-
-Only authorised users should be able to access protected community features.
-Private community information should only be visible to permitted users.
-Community administrators should have clearly defined permissions.
-Members should be able to report inappropriate content through the shared reporting system.
-Personal information should not be displayed unnecessarily.
-Community rules should encourage respectful behaviour.
-Administrative actions should be protected against unauthorised use.
-Community membership and content should follow the school's policies.
-14. Open Questions for the Coding Club
-
-Before development begins, the team should decide:
-
-Can both students and teachers create communities?
-Should communities be open, approval-based, or support both options?
-Can users belong to multiple communities?
-Can every community have several administrators?
-Who can delete or archive a community?
-What happens to a community if its creator leaves?
-Should community posts be visible to non-members?
-Which community features are essential for the first version of CLICK?
-Can administrators remove members directly, or must some cases go through moderation?
-How should the platform handle communities that become inactive?
-
-These decisions should be recorded in the shared project documentation so that developers and AI coding tools do not have to guess.
-
-15. Acceptance Criteria
-
-The Communities & Groups feature should be considered ready for release testing when the agreed requirements can be demonstrated.
-
-Examples include:
-
-An authorised user can create a community.
-The system rejects invalid community details.
-A user can join an eligible community.
-Duplicate membership is prevented.
-Community members can view permitted community information.
-Authorised members can create community posts using CLICK's shared posting system.
-Unauthorised users cannot perform administrator actions.
-A member can leave a community successfully.
-Administrator responsibilities are preserved when an administrator leaves.
-Community membership and permissions remain consistent across the platform.
-Reporting and moderation features work with community content.
-
-The team should convert these criteria into specific tests before the feature is released.
-
-Conclusion
-
-The Communities & Groups feature will provide an organised space for students and teachers to connect around shared interests and activities.
-
-A clear set of requirements, user permissions, data needs, and connections to other CLICK features will help the coding club build a consistent system.
-
-By agreeing on the design before coding begins, the team can reduce duplicated functionality, avoid conflicting assumptions, and make future improvements easier.
+CLICK: Communities & Groups System Architecture & BlueprintSection Owner: FumilayoDocument Version: 1.0Target Platform: CLICK Digital CampusExecutive SummaryThe Communities & Groups feature serves as the digital campus for CLICK, enabling students, lecturers, staff, clubs, classes, and administrative groups to communicate, collaborate, and share resources.Rather than functioning merely as a generic social feed, the architecture treats the feed as one slice of a broader Community Engine built around six primary layers:Plaintext                     SCHOOL COMMUNITY
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+     DISCOVER             SOCIAL          COMMUNICATION
+        │                   │                   │
+   Communities            Feed                Messaging
+   People                 Posts               Notifications
+   Groups                 Comments            Mentions
+   Events                 Reactions           Activity
+        │                   │                   │
+        └───────────────────┼───────────────────┘
+                            │
+                     COMMUNITY ENGINE
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+     Identity           Moderation         Intelligence
+     & Roles             & Safety           & Ranking
+        │                   │                   │
+        └───────────────────┼───────────────────┘
+                            │
+                        DATA LAYER
+                            │
+        Users • Posts • Comments • Media • Groups • Events
+1. System Requirements & Open QuestionsCore RequirementsCommunity Management: Creation, discovery, joining, and leaving of groups (e.g., Coding Club, Art Club, Departmental Groups).Role-Based Access Control (RBAC): Group-level roles (Owner, Administrator, Moderator, Member) integrated with system-wide roles (Super Admin, School Admin, Lecturer, Staff, Student).Shared Discussion Infrastructure: Leveraging CLICK's global Posts, Comments & Reactions system for community feeds.Safety & Moderation: Automated content filtering, reporting queues, and administrative moderation tools.Real-Time Communications: Real-time updates for notifications, discussions, and event tracking via WebSockets.Design Decisions for Team Questions (Section 6)QuestionRecommended Technical PolicyRationale1. Can both students and teachers create communities?Yes. Both can create communities.Allows academic study groups (students) and official course/department channels (faculty) to co-exist natively.2. Can anyone join a community, or is approval required?Configurable per group: PUBLIC, REQUIRES_APPROVAL, or PRIVATE_INVITE.Accommodates public interest clubs (Art Club) vs restricted departmental/class groups.3. Can a community have multiple administrators?Yes. Multi-admin support with an immutable Owner role.Prevents administrative bottlenecks when managing larger clubs or official groups.4. Who can delete a community?The Community Owner, School Admin, or Super Admin.Protects against accidental deletion by co-administrators while retaining institutional control.5. Can non-members view community posts?Configurable via Visibility Settings: PUBLIC_TO_SCHOOL vs MEMBERS_ONLY.Public groups gain exposure on the Discover feed, while private groups remain protected.2. Platform Architecture & Data ModelData Entities & Schema TopologyPlaintextusers
+  │
+  ├── profiles
+  ├── system_roles
+  └── memberships
+        │
+        ▼
+communities
+  │
+  ├── community_members (roles: Owner, Admin, Moderator, Member)
+  ├── community_settings (privacy, join_rules)
+  └── community_rules
+        │
+        ├──────────────────────┐
+        ▼                      ▼
+      posts                  events
+        │                      │
+        ├── post_media         ├── event_attendees
+        ├── post_reactions     └── event_discussions
+        ├── comments
+        │     ├── replies
+        │     └── comment_reactions
+        └── reports
+Database Schema Definition (SQL Reference)SQL-- Communities Core Table
+CREATE TABLE communities (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100) NOT NULL,
+    slug VARCHAR(120) UNIQUE NOT NULL,
+    description TEXT,
+    category VARCHAR(50) NOT NULL,
+    rules TEXT[],
+    visibility VARCHAR(20) DEFAULT 'PUBLIC_TO_SCHOOL', -- PUBLIC_TO_SCHOOL, MEMBERS_ONLY, PRIVATE
+    join_policy VARCHAR(20) DEFAULT 'ANYONE',           -- ANYONE, APPROVAL_REQUIRED, INVITE_ONLY
+    created_by UUID REFERENCES users(id),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Community Members & Permissions
+CREATE TYPE community_role AS ENUM ('owner', 'admin', 'moderator', 'member');
+CREATE TYPE membership_status AS ENUM ('active', 'pending', 'banned');
+
+CREATE TABLE community_members (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    community_id UUID REFERENCES communities(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    role community_role DEFAULT 'member',
+    status membership_status DEFAULT 'active',
+    joined_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(community_id, user_id)
+);
+
+-- Posts Integration
+CREATE TYPE post_type AS ENUM ('text', 'media', 'poll', 'question', 'announcement', 'event_link');
+
+CREATE TABLE posts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    community_id UUID REFERENCES communities(id) ON DELETE CASCADE,
+    author_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    type post_type DEFAULT 'text',
+    content TEXT,
+    is_pinned BOOLEAN DEFAULT FALSE,
+    is_official_announcement BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+3. Core Modules & Component ArchitectureComponent Services BreakdownPlaintext                         COMMUNITY API GATEWAY
+                                   │
+       ┌───────────────────────────┼───────────────────────────┐
+       ▼                           ▼                           ▼
+Identity Service            Community Service           Content Engine
+ (RBAC, Auth)               (Groups, Members)          (Posts, Comments)
+       │                           │                           │
+       └───────────────────────────┼───────────────────────────┘
+                                   │
+                                   ▼
+                            Real-Time Engine
+                         (WebSocket Event Bus)
+                                   │
+       ┌───────────────────────────┴───────────────────────────┐
+       ▼                                                       ▼
+Notification Service                                Moderation Engine
+ (Push, Email, In-App)                               (Reports, Filters)
+Identity & Authorization Engine: Enforces RBAC at both system level (Lecturer, Student) and community level (Admin, Member).Feed & Content Engine: Manages threaded discussions, polls, media attachment links, and specialized post types (e.g., Q&A mode with direct answer highlighting).Real-Time Event Bus: Operates via WebSockets to publish real-time notifications, comment stream updates, and activity feeds.Moderation Layer: Automated phrase filtering, user reporting workflows, and administrative queue management.4. API SpecificationCommunity EndpointsMethodEndpointDescriptionAuth LevelGET/api/v1/communitiesList all public/joined communitiesAuthenticatedPOST/api/v1/communitiesCreate a new communityStudent / FacultyGET/api/v1/communities/{id}Get community metadata and rule setAuthenticatedPATCH/api/v1/communities/{id}Update details/rulesCommunity Admin+POST/api/v1/communities/{id}/joinJoin or request accessAuthenticatedDELETE/api/v1/communities/{id}/members/{userId}Remove or ban a memberCommunity Admin+Posts & Discussion EndpointsMethodEndpointDescriptionAuth LevelGET/api/v1/communities/{id}/postsFetch group discussion feedCommunity MemberPOST/api/v1/communities/{id}/postsCreate post/announcement/pollCommunity MemberPOST/api/v1/posts/{postId}/commentsSubmit threaded comment/replyCommunity MemberPOST/api/v1/posts/{postId}/reactionsReact (Like, Support, Celebrate, Helpful)Community Member5. Implementation RoadmapPlaintextPHASE 1: Foundation (MVP)
+├── Auth Integration & Roles
+├── Community Creation & Discovery
+├── Basic Post Creation & Feed
+└── Member Join/Leave Flow
+
+PHASE 2: Engagement Layer
+├── Threaded Comments & Replies
+├── Purposeful Reactions (Like, Support, Celebrate, Helpful)
+├── Media Upload Pipeline (CDN Storage)
+└── In-App Notifications
+
+PHASE 3: Campus Integrations
+├── Official Announcements Hierarchy
+├── Events System & RSVP Tracking
+├── Granular Group Moderation Dashboard
+└── WebSocket Real-Time Activity Updates
+6. Product Philosophy Checklist[x] Academic Utility First: Structured post types (Questions, Polls, Official Announcements) prioritized over generic social feeds.[x] Zero Reliance on Client Enforcement: All privacy rules, group access checks, and role validation enforced exclusively on the backend API layer.[x] Modular Decoupling: Discussions use CLICK's universal post infrastructure, preventing duplicated code across the ecosystem.
