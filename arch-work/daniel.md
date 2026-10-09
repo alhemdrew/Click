@@ -1,673 +1,796 @@
-Authentication, Accounts & User Roles
-1. The overall idea
+# CLICK — Authentication, Accounts & User Roles
 
-Think of Authentication, Accounts & User Roles as the identity and access system of CLICK.
+## 1. The Overall Idea
 
-It answers three fundamental questions: Who is this person? What account do they have? What are they allowed to do?
+Think of Authentication, Accounts & User Roles as the **identity and access system of CLICK**.
 
-The system sits underneath many other parts of CLICK:
+> It answers three fundamental questions: Who is this person? What account do they have? What are they allowed to do?
 
+The system supports other parts of CLICK, including the feed, groups, messaging, notifications, and moderation.
+
+```text
                          CLICK
-                           │
-                           ↓
+                           |
+                           v
               AUTHENTICATION & ACCOUNTS
-                           │
-            ┌──────────────┼──────────────┐
-            ↓              ↓              ↓
-        Identity         Roles       Permissions
-            │              │              │
-            └──────────────┼──────────────┘
-                           ↓
-                  ┌────────────────┐
-                  │ CLICK FEATURES │
-                  └────────────────┘
-                    │      │      │
-                    ↓      ↓      ↓
-                  Feed   Groups  Messaging
-                    │      │      │
-                    └──────┼──────┘
-                           ↓
-                    School Community
+                           |
+            +--------------+--------------+
+            |              |              |
+            v              v              v
+         Identity         Roles       Permissions
+            |              |              |
+            +--------------+--------------+
+                           |
+                           v
+                     CLICK FEATURES
+                      /    |    \
+                     v     v     v
+                   Feed  Groups Messaging
+```
 
-The important idea is that authentication should not be treated as just a login screen. It becomes a foundation that other parts of CLICK use to determine identity and access.
+**Key idea:** Authentication is not just a login screen. It is a foundation that other parts of CLICK use to determine identity and access.
 
-2. Who should use it?
+---
 
-CLICK could have several types of users.
+## 2. Who Should Use It?
 
-You don't necessarily need all of these. The development team should decide which roles actually make sense for the school.
+CLICK could support several types of users. The team does not necessarily need every role listed below; it should choose roles that fit the school's needs.
 
+```text
 CLICK USERS
-    │
-    ├── Students
-    │
-    ├── Teachers / Lecturers
-    │
-    ├── School Staff
-    │
-    ├── Moderators
-    │
-    └── School Administrators
-Student
+    |
+    +-- Students
+    +-- Teachers / Lecturers
+    +-- School Staff
+    +-- Moderators
+    +-- School Administrators
+```
+
+### Student
 
 A student might be able to:
 
-Manage their profile
-Join permitted communities
-Create posts
-Comment and react
-Participate in discussions
-Attend or RSVP to events
-Receive announcements
-Teacher / Lecturer
+- Manage their profile.
+- Join permitted communities.
+- Create posts.
+- Comment and react.
+- Participate in discussions.
+- RSVP to events.
+- Receive announcements.
+
+### Teacher / Lecturer
 
 A teacher could have additional capabilities:
 
-Create class communities
-Post academic content
-Create announcements
-Moderate discussions
-Manage certain class activities
-Moderator
+- Create class communities.
+- Post academic content.
+- Create announcements.
+- Moderate discussions.
+- Manage certain class activities.
+
+### Moderator
 
 A moderator could focus mainly on safety:
 
-Review reports
-Remove inappropriate content
-Warn users
-Escalate serious issues
-School Administrator
+- Review reports.
+- Remove inappropriate content.
+- Warn users.
+- Escalate serious issues.
+
+### School Administrator
 
 An administrator could manage the wider platform:
 
-Accounts
-User roles
-Classes
-Communities
-School announcements
-Suspended accounts
-Moderation settings
+- Accounts and user roles.
+- Classes and communities.
+- School announcements.
+- Suspended accounts.
+- Moderation settings.
 
-This is similar to the sample's approach of separating roles such as School Admin, Lecturer, Staff, Student, Club Admin and Moderator.
+### Questions to consider
 
-3. Authentication
+- Does CLICK need a separate moderator role?
+- Should club leaders have special permissions within their clubs?
+- Should teachers be able to manage only their own classes or the entire school community?
 
-Authentication is the process of verifying that someone is actually the person associated with an account.
+---
 
-A basic flow could be:
+## 3. Authentication
 
+Authentication is the process of verifying that someone is associated with the account they are trying to access.
+
+```text
 User
- ↓
+ |
+ v
 Enter login information
- ↓
+ |
+ v
 CLICK verifies credentials
- ↓
+ |
+ v
 Authentication successful?
- │
- ├── NO → Show error
- │
- └── YES
-       ↓
-    Identify account
-       ↓
-    Identify role
-       ↓
-    Load permissions
-       ↓
-    Enter CLICK
+ |                       |
+ No                      Yes
+ |                       |
+ v                       v
+Show error          Identify account
+                         |
+                         v
+                    Identify role
+                         |
+                         v
+                  Load permissions
+                         |
+                         v
+                     Enter CLICK
+```
 
-There are several approaches your team could consider.
+### Option A — School ID + Password
 
-Option A — School ID + Password
-Student ID
-Password
-    ↓
-CLICK
+The user enters their school-issued ID and password.
 
-Pros: Simple and school-focused.
+**Advantages**
+- Simple and school-focused.
+- May work for students who do not have school email accounts.
 
-Cons: Students could forget their IDs or passwords.
+**Disadvantages**
+- Students may forget their IDs or passwords.
+- School IDs should not be exposed unnecessarily.
 
-Option B — School Email + Password
-School Email
-Password
+### Option B — School Email + Password
 
-Pros: Familiar login method.
+The user logs in with a school email address and password.
 
-Cons: Requires students to have school email accounts.
+**Advantages**
+- Familiar login method.
+- Can work well if every student already has a school account.
 
-Option C — School-created accounts
+**Disadvantages**
+- Requires school email accounts.
+- Account recovery depends on access to the email account.
+
+### Option C — School-Created Accounts
 
 The school creates accounts before students use CLICK.
 
-School
- ↓
-Creates account
- ↓
+```text
+School creates account
+        |
+        v
 Student receives login details
- ↓
+        |
+        v
 Student logs in
- ↓
+        |
+        v
 Student completes profile
+```
 
-This could give the school greater control over who is allowed onto the platform.
+**Advantages**
+- Gives the school greater control over membership.
+- Reduces the risk of people outside the school registering.
 
-4. Account structure
+**Disadvantages**
+- Requires a process for creating and maintaining accounts.
+- Someone must handle incorrect details and account recovery.
 
-An account shouldn't just be:
+The team could also consider a combination, such as school-created accounts with school email login.
 
-username
-password
+---
 
-You could think about it more like:
+## 4. Account Structure
 
+An account involves more than a username and password.
+
+```text
 USER
- │
- ├── Account
- │    ├── User ID
- │    ├── Login credentials
- │    └── Account status
- │
- ├── Profile
- │    ├── Name
- │    ├── Profile picture
- │    └── Class
- │
- ├── Role
- │    └── Student / Teacher / Admin / etc.
- │
- └── Permissions
-      ├── Create posts
-      ├── Manage groups
-      ├── Moderate content
-      └── Manage users
+ |
+ +-- Account
+ |    +-- User ID
+ |    +-- Login identifier
+ |    +-- Password credential
+ |    +-- Account status
+ |
+ +-- Profile
+ |    +-- Display name
+ |    +-- Profile picture
+ |    +-- Class information
+ |
+ +-- Role
+ |    +-- Student / Teacher / Admin / etc.
+ |
+ +-- Permissions
+      +-- Create posts
+      +-- Manage groups
+      +-- Moderate content
+      +-- Manage users
+```
 
-This separation can make the system easier to expand later.
+Separating account information from profile information can make the system easier to maintain. For example, changing a profile picture should not require changing login credentials.
 
-For example, changing someone's profile information shouldn't necessarily mean changing their authentication credentials.
+This is a conceptual model, not a final database design.
 
-5. User roles and permissions
+---
 
-One of the biggest architectural decisions is how CLICK decides what each user can do.
+## 5. User Roles and Permissions
 
-A possible structure is:
+One major architectural decision is how CLICK determines what each user can do.
 
-ROLE
- │
- ├── Student
- │
- │    ├── View community
- │    ├── Create posts
- │    ├── Comment
- │    └── Join groups
- │
- ├── Teacher
- │
- │    ├── Student permissions
- │    ├── Create class groups
- │    └── Post announcements
- │
- └── Administrator
-      │
-      ├── Manage users
-      ├── Manage roles
-      ├── Manage communities
-      └── Manage platform settings
+A simple starting model might be:
 
-The sample recommends thinking about roles using RBAC — Role-Based Access Control, rather than scattering permission rules throughout the application.
+```text
+Student
+ +-- View community
+ +-- Create posts
+ +-- Comment
+ +-- Join permitted groups
 
-You could eventually make permissions more detailed:
+Teacher
+ +-- Student capabilities, where appropriate
+ +-- Create class groups
+ +-- Post authorized announcements
 
-Role
- ↓
-Permissions
- ↓
-Actions
+Administrator
+ +-- Manage users
+ +-- Manage roles
+ +-- Manage communities
+ +-- Manage platform settings
+```
+
+### What is RBAC?
+
+**RBAC** means **Role-Based Access Control**. Users receive permissions based on their assigned roles.
 
 For example:
 
-Teacher
- ├── create_class
- ├── create_announcement
- └── moderate_class
-
-Student
- ├── create_post
- ├── comment
- └── join_group
-6. Simple user flow
-New student
-Receive CLICK account
-        ↓
-Open CLICK
-        ↓
-Log in
-        ↓
-Verify account
-        ↓
-Complete profile
-        ↓
-Select/confirm class
-        ↓
-Enter Community
-Returning student
-Open CLICK
- ↓
-Log in
- ↓
-Authentication
- ↓
-Load account
- ↓
-Load role + permissions
- ↓
-CLICK Home
-Administrator
-Login
- ↓
-Authentication
- ↓
-Administrator role detected
- ↓
-Administrator permissions loaded
- ↓
-CLICK
- ↓
-Admin tools become available
-
-The important distinction is:
-
-Logging in doesn't automatically give someone permission to perform every action.
-
-7. What information does it need?
-
-Your team could divide account information into different categories.
-
-Identity
-User ID
-Name
-School ID
-Class
-School
-Authentication
-Login identifier
-Password credential
-Account status
-Recovery information
-Profile
-Profile picture
-Bio
-Interests
-Class/community information
-Authorization
+```text
 Role
+ |
+ v
 Permissions
-Community memberships
-Account management
-Created date
-Last login
-Suspension status
-Security/session information
+ |
+ v
+Allowed actions
+```
 
-But this doesn't mean CLICK must collect all of these.
+Possible permission names include:
 
-A good architectural question is:
+```text
+Student
+ +-- create_post
+ +-- comment
+ +-- join_group
 
-Does CLICK actually need this information?
+Teacher
+ +-- create_class_group
+ +-- create_announcement
 
-If not, consider leaving it out.
+Administrator
+ +-- manage_users
+ +-- assign_roles
+```
 
-8. What could the interface contain?
-Login
-┌───────────────────────────────────────┐
-│                  CLICK                │
-│                                       │
-│ Cuddles Learning, Interaction &       │
-│ Community Konnect                     │
-│                                       │
-│ School ID / Email                     │
-│ [_______________________________]     │
-│                                       │
-│ Password                              │
-│ [_______________________________]     │
-│                                       │
-│           [ LOG IN ]                  │
-│                                       │
-│ Forgot password?                      │
-└───────────────────────────────────────┘
-Account settings
+The system should not trust a user to choose their own privileged role. Role assignments need to be verified and protected.
+
+### A design choice
+
+The team could use:
+
+- **Simple RBAC:** a small set of roles with predefined permissions.
+- **More granular RBAC:** individual permissions can be assigned to roles, allowing more flexibility.
+
+Simple RBAC may be easier for an early version. More detailed permissions may become useful as CLICK grows.
+
+---
+
+## 6. Simple User Flows
+
+### New Student
+
+```text
+Receive CLICK account
+        |
+        v
+Open CLICK
+        |
+        v
+Log in
+        |
+        v
+Verify account
+        |
+        v
+Complete profile
+        |
+        v
+Confirm class information
+        |
+        v
+Enter Community
+```
+
+### Returning Student
+
+```text
+Open CLICK
+    |
+    v
+Log in
+    |
+    v
+Authenticate account
+    |
+    v
+Load role and permissions
+    |
+    v
+Open CLICK Home
+```
+
+### Administrator
+
+```text
+Log in
+    |
+    v
+Authenticate account
+    |
+    v
+Verify administrator permissions
+    |
+    v
+Open CLICK
+    |
+    v
+Access authorized admin tools
+```
+
+**Important distinction:** Logging in does not automatically give someone permission to perform every action.
+
+---
+
+## 7. What Information Does It Need?
+
+Consider separating information into categories.
+
+### Identity
+
+- User ID.
+- Display name.
+- School ID, if needed.
+- School.
+- Class or year group, if relevant.
+
+### Authentication
+
+- Login identifier.
+- Secure password credential.
+- Account status.
+- Recovery information, if needed.
+
+### Profile
+
+- Profile picture, optional.
+- Bio, optional.
+- Interests, optional.
+- Class or community information, where appropriate.
+
+### Authorization
+
+- Assigned role.
+- Permissions associated with that role.
+- Community memberships.
+
+### Account Management
+
+- Account creation date.
+- Session information.
+- Suspension or disabled status.
+- Security activity, where appropriate.
+
+Do not automatically collect every field. Ask: **Does CLICK actually need this information?** Collecting less information can reduce privacy risks and simplify the system.
+
+---
+
+## 8. What Could the Interface Contain?
+
+These are examples of possible interface components, not final designs.
+
+### Login Screen
+
+```text
++---------------------------------------+
+|                 CLICK                 |
+|                                       |
+| Cuddles Learning, Interaction &       |
+| Community Konnect                     |
+|                                       |
+| School ID / Email                     |
+| [_______________________________]     |
+|                                       |
+| Password                              |
+| [_______________________________]     |
+|                                       |
+|              [ LOG IN ]               |
+|                                       |
+| Forgot password?                      |
++---------------------------------------+
+```
+
+### Account Settings
+
+```text
 ACCOUNT
 
 Profile
- ├── Name
- ├── Profile picture
- └── Class
+ +-- Display name
+ +-- Profile picture
+ +-- Class information
 
 Security
- ├── Change password
- ├── Logged-in devices
- └── Log out
+ +-- Change password
+ +-- Review active sessions
+ +-- Log out
 
 Privacy
- ├── Profile visibility
- └── Messaging settings
-Admin account management
+ +-- Profile visibility
+ +-- Messaging settings
+```
+
+### Admin Account Management
+
+```text
 USER MANAGEMENT
 
 Search users [________________]
 
 Name          Role          Status
-
 Daniel        Student       Active
 Sarah         Student       Active
 Mr. James     Teacher       Active
 
-[ View ] [ Edit ] [ Suspend ]
+[View] [Edit] [Suspend]
+```
 
-The important thing is that the interface changes according to the user's role.
+The interface can show different tools depending on the user's role. However, hiding a button is not enough to secure an action; the backend must also check permissions.
 
-9. How it connects to the rest of CLICK
+---
 
-This is where your section becomes particularly important.
+## 9. How It Connects to Other Parts of CLICK
 
-Authentication and accounts could connect to almost every major CLICK feature.
+Authentication and accounts connect to almost every major CLICK feature.
 
+```text
                      USER ACCOUNT
-                          │
-          ┌───────────────┼────────────────┐
-          ↓               ↓                ↓
-        Profile         Role          Permissions
-          │               │                │
-          └───────────────┼────────────────┘
-                          ↓
-                ┌───────────────────┐
-                │    CLICK APP      │
-                └───────────────────┘
-                   │      │      │
-                   ↓      ↓      ↓
-                 Feed   Groups  Messaging
-                   │      │      │
-                   ↓      ↓      ↓
-              Posts   Members  Conversations
-Feed
+                          |
+          +---------------+----------------+
+          |               |                |
+          v               v                v
+       Profile           Role          Permissions
+          |               |                |
+          +---------------+----------------+
+                          |
+                          v
+                      CLICK APP
+                     /    |     \
+                    v     v      v
+                  Feed  Groups  Messaging
+                    |     |       |
+                    v     v       v
+                  Posts Members Conversations
+```
 
-When someone creates a post, CLICK needs to know:
+### Feed
 
-Who created this post?
+When someone creates a post, CLICK needs to know which account created it. The post can reference the user's unique account ID.
 
-So the post can be associated with that user's account.
+### Groups
 
-Groups
+A group may have an owner, moderators, and members. CLICK checks the user's membership and permissions before allowing group actions.
 
-A group might have:
+### Announcements
 
-Group
- │
- ├── Members
- ├── Owner
- ├── Moderators
- └── Permissions
+CLICK should verify whether a user is allowed to publish an official school announcement. A normal student post and an official announcement should not be treated as equivalent.
 
-The user's account system helps determine which of these positions they have.
+### Notifications
 
-The sample uses a similar hierarchy for groups, including Owner → Administrator → Moderator → Member.
+The account system provides the identity needed to determine which user should receive a notification.
 
-Announcements
+### Moderation
 
-CLICK can determine whether someone has permission to create an official school announcement.
+Reports and moderation actions need to be associated with the relevant content and accounts, while access to sensitive moderation information should be limited.
 
-User
- ↓
-Role?
- ↓
-Authorized?
- ├── No → Cannot publish official announcement
- └── Yes → Create announcement
-Notifications
+---
 
-The account provides the identity needed to determine:
+## 10. Security and Privacy
 
-Who should receive this notification?
+Because CLICK is a school platform, security and privacy should be considered from the beginning.
 
-10. Security & Privacy
+### Password Security
 
-Because CLICK is a school platform, security should be considered from the beginning.
+- Never store passwords as plain text.
+- Use a reputable authentication system or appropriate password hashing.
+- Protect login traffic with HTTPS.
+- Provide a safe password-recovery process.
 
-Password security
+### Authorization
 
-Passwords should not be stored as plain text.
+Do not rely only on hiding buttons in the interface.
 
-The system should use secure password hashing and protected communication.
+For example, hiding a "Delete User" button from students is not enough. The backend must check whether the person making the request is actually allowed to delete an account.
 
-Authorization
+### Student Privacy
 
-Don't rely only on hiding buttons.
+Consider who should be able to see:
 
-For example:
+- Full names.
+- Class information.
+- Profiles.
+- Posts.
+- Private messages.
+- Student IDs.
+- Contact information.
 
-Student sees no "Delete User" button
+Not every piece of information needs to be visible to every user.
 
-is not enough.
+### Sessions
 
-The backend should also check:
+Consider:
 
-Is this user actually allowed
-to delete another account?
+- Secure session handling.
+- Session expiration.
+- Logout.
+- Revoking sessions after a password change or account compromise.
+- Reviewing active sessions, if appropriate.
 
-The sample makes the same point for community visibility: permissions should be enforced by the backend rather than relying on the frontend to hide things.
+### Least Privilege
 
-Student privacy
+Give each user only the permissions needed for their responsibilities. For example, a moderator may need to review reports without having permission to change school-wide account settings.
 
-Think carefully about who can see:
+### Data Minimization
 
-Full names
-Classes
-Profiles
-Posts
-Messages
-Student IDs
-Contact information
+Avoid collecting information that CLICK does not need. Student data should be accessed only for appropriate purposes and by authorized people.
 
-You could potentially define visibility levels:
+---
 
-Visibility
- │
- ├── School-wide
- ├── Community-only
- ├── Class-only
- └── Private
+## 11. Common Mistakes
 
-The sample uses a similar visibility model for community content.
+### Mistake 1 — Treating Authentication as Just a Login Page
 
-11. Common mistakes
-❌ Making authentication just a login page
+Authentication also involves account verification, session management, account recovery, and related processes.
 
-Authentication is bigger than:
+### Mistake 2 — Letting Users Choose Privileged Roles
 
-Email
-Password
-Login
+Avoid letting someone select "Administrator" during registration and immediately receive administrator permissions. Privileged roles need a trusted assignment process.
 
-It includes account identity, sessions, recovery and access control.
+### Mistake 3 — Giving Everyone the Same Permissions
 
-❌ Letting users select powerful roles
+Students, teachers, moderators, and administrators may have different responsibilities. Their permissions should reflect those responsibilities.
 
-Avoid something like:
+### Mistake 4 — Securing Only the Frontend
 
-Choose your role:
+Hiding a button does not prevent someone from trying to call the backend directly. Sensitive actions must be authorized on the server.
 
-☑ Student
-☑ Teacher
-☑ Administrator
+### Mistake 5 — Collecting Unnecessary Information
 
-without verification.
+More account fields do not automatically make the platform better. Collect only what is needed.
 
-Otherwise, someone could simply select Administrator.
+### Mistake 6 — Ignoring the Account Lifecycle
 
-❌ Giving everyone the same permissions
+Think about what happens when:
 
-A student, teacher and administrator shouldn't automatically have identical capabilities.
-
-❌ Putting security only in the frontend
-
-Hidden buttons aren't security.
-
-The backend must enforce permissions.
-
-❌ Collecting unnecessary information
-
-Don't create a huge student profile just because the database can store it.
-
-❌ Forgetting account lifecycle
-
-Think about:
-
+```text
 Account created
-      ↓
+      |
+      v
 Active
-      ↓
-Class changes
-      ↓
-Role changes
-      ↓
-Suspended / Disabled
-      ↓
-Graduated / Leaves school
+      |
+      +-- Class changes
+      |
+      +-- Role changes
+      |
+      +-- Password reset
+      |
+      +-- Suspended / Disabled
+      |
+      +-- Student graduates or leaves
+```
 
-The system needs to handle these situations.
+CLICK needs a sensible process for each relevant situation.
 
-12. Possible architecture
+---
 
-You could eventually represent your section like this:
+## 12. Possible Architecture
 
+One conceptual architecture could look like this:
+
+```text
                        CLICK
-                         │
-                         ↓
+                         |
+                         v
               AUTHENTICATION SYSTEM
-                         │
-             ┌───────────┼───────────┐
-             ↓           ↓           ↓
-          Identity      Roles    Sessions
-             │           │           │
-             └───────────┼───────────┘
-                         ↓
+                         |
+             +-----------+-----------+
+             |           |           |
+             v           v           v
+          Identity      Roles      Sessions
+             |           |           |
+             +-----------+-----------+
+                         |
+                         v
                    ACCESS CONTROL
-                         │
-             ┌───────────┼───────────┐
-             ↓           ↓           ↓
+                         |
+             +-----------+-----------+
+             |           |           |
+             v           v           v
            Feed        Groups     Messaging
-             │           │           │
-             └───────────┼───────────┘
-                         ↓
-                  ACCOUNT DATABASE
-                         │
-          ┌──────────────┼──────────────┐
-          ↓              ↓              ↓
-        Users          Profiles      Memberships
+             |           |           |
+             +-----------+-----------+
+                         |
+                         v
+                  ACCOUNT DATA LAYER
+                         |
+             +-----------+-----------+
+             |           |           |
+             v           v           v
+           Users      Profiles   Memberships
+```
 
-And at the database level, you could consider entities such as:
+Possible database entities to investigate include:
 
+```text
 users
-  │
-  ├── profiles
-  ├── roles
-  ├── permissions
-  ├── sessions
-  └── memberships
-
+profiles
 roles
-  │
-  └── role_permissions
-
+permissions
+role_permissions
+sessions
 schools
-  │
-  └── users
-
 classes
-  │
-  └── class_members
+class_members
+community_memberships
+```
 
-I would not treat this as the final database design yet. It's a starting model for your team to discuss.
+These are candidate entities, not a mandatory schema. For example, the team should decide whether class membership belongs in a separate table and whether CLICK needs multiple schools or just one.
 
-13. What I'd leave for your team to decide
+---
 
-This is where you can demonstrate that you're designing the architecture rather than simply copying one.
+## 13. Decisions for the Development Team
 
-Your team should decide:
+The purpose of this section is to help the team make informed choices, not to lock the architecture before requirements are clear.
 
-Account creation
+### Account Creation
 
-A. School-created accounts
-B. Student registration
-C. Invitation system
-D. Combination
+Possible options:
 
-Login
+- School-created accounts.
+- Student registration with school verification.
+- Invitation-based registration.
+- A combination of these approaches.
 
-A. Student ID + password
-B. School email + password
-C. Both
+### Login Method
 
-Roles
+Possible options:
 
-A. Simple roles
+- School ID and password.
+- School email and password.
+- Both, if the system can safely support them.
+- School single sign-on, if an existing school identity provider is available.
 
-Student
-Teacher
-Admin
+### Roles
 
-B. More detailed roles
+Possible options:
 
-Student
-Teacher
-Moderator
-Club Admin
-School Admin
-System Admin
-Permissions
+**Simple roles**
+- Student.
+- Teacher.
+- Administrator.
 
-A. Simple role-based permissions
+**More detailed roles**
+- Student.
+- Teacher.
+- Moderator.
+- Club Administrator.
+- School Administrator.
+- System Administrator.
 
-Student → student permissions
-Teacher → teacher permissions
+Use only the roles that have a clear purpose.
 
-B. More granular RBAC
+### Permissions
 
-Role → Permission → Action
-Profile visibility
+Possible options:
 
-A. School-wide
-B. Class/community-based
-C. User-controlled
-D. Combination
+- Simple permissions attached to each role.
+- More granular role-based permissions.
+- Additional checks based on context, such as whether a teacher manages a particular class.
 
-The key idea for your section
+### Profile Visibility
 
-If the sample's Community architecture is about creating a "digital campus", your part is essentially the identity foundation underneath that campus.
+Possible options:
 
+- Visible to the school community.
+- Visible only to class or group members.
+- Controlled by selected privacy settings.
+- A combination of these options.
+
+---
+
+## 14. Suggested Development Phases
+
+A phased approach can help the team avoid trying to build everything at once.
+
+### Phase 1 — Foundation
+
+- Account creation or provisioning.
+- Login and logout.
+- Basic profiles.
+- Initial roles and permissions.
+- Account status handling.
+
+### Phase 2 — Account Management
+
+- Password recovery.
+- Profile editing.
+- Class and school membership.
+- Administrator account management.
+
+### Phase 3 — Security and Privacy
+
+- Server-side authorization checks.
+- Secure session management.
+- Privacy settings.
+- Account suspension and recovery procedures.
+- Appropriate audit records for sensitive actions.
+
+### Phase 4 — Integration
+
+- Connect accounts to posts and comments.
+- Connect roles to groups and announcements.
+- Connect accounts to notifications.
+- Connect account status to moderation workflows.
+
+The exact phases should depend on the team's timeline, technology, and school requirements.
+
+---
+
+## 15. The Key Idea
+
+If CLICK's Community section is the digital campus, **Authentication, Accounts & User Roles provide the identity and access foundation beneath that campus**.
+
+```text
                          CLICK
-                           │
-                           ↓
-              WHO ARE YOU?
-                 ↓
-          Authentication
-                 │
-                 ↓
-           WHAT ACCOUNT?
-                 ↓
-              Profile
-                 │
-                 ↓
-          WHAT CAN YOU DO?
-                 ↓
-               Roles
-                 │
-                 ↓
-           Permissions
-                 │
-                 ↓
-       ┌─────────┼─────────┐
-       ↓         ↓         ↓
-     Feed      Groups   Messaging
+                           |
+                           v
+                    WHO ARE YOU?
+                           |
+                           v
+                    Authentication
+                           |
+                           v
+                    WHAT ACCOUNT?
+                           |
+                           v
+                         Profile
+                           |
+                           v
+                   WHAT CAN YOU DO?
+                           |
+                           v
+                          Roles
+                           |
+                           v
+                      Permissions
+                           |
+              +------------+------------+
+              |            |            |
+              v            v            v
+            Feed         Groups      Messaging
+```
 
-That gives you a strong foundation while still leaving your team room to decide exactly how CLICK should implement it, which matches the sample's approach of presenting architecture and options rather than immediately forcing one implementation.
+Keep these two concepts distinct:
+
+- **Authentication:** verifying who a user is.
+- **Authorization:** deciding what that user is allowed to do.
+
+Use this document as a starting point for discussion. Your team should confirm the requirements, choose the roles and permissions, and then develop the detailed database design and implementation plan.
