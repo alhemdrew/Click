@@ -609,3 +609,6 @@ CLICK Enforces Access Permissions
 **Key principle:** Users decide how discoverable their profiles are, while CLICK protects sensitive information regardless of whether a profile is public or private.
 
 One important distinction: Public doesn't mean all information is visible. It means the profile is discoverable and its permitted information can be viewed. Even public profiles should protect sensitive details.
+
+
+<img width="1536" height="1024" alt="CLICK Profile Customization Dashboard" src="https://github.com/user-attachments/assets/eb6569d2-02f8-4c32-87ba-196e4c26a7cc" />
