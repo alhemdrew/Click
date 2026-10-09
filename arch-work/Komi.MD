@@ -1,7 +1,7 @@
 Click — Announcements & School Updates
 
 Purpose
-KEMI
+
 - Share official school announcements and updates.
 
 Users
