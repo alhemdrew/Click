@@ -529,3 +529,83 @@ More advanced personalization can be added later.
 The overall architecture keeps **Profile, Personalization and Privacy as one connected system**, while allowing each part to have its own responsibilities.
 
 This is much cleaner for your submission because you have **one architecture**, rather than making the reader choose between Option A, B and C. The structure also follows the sample's numbered, architecture-first style. sample
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yesss, that's a good addition to CLICK! You can replace that section with this:
+
+## 12. Privacy & Profile Visibility
+
+CLICK should allow users to decide whether their profile is **Public or Private**, giving them control over who can view their profile information.
+
+### Profile Visibility Options
+
+**1. Public Profile**
+
+- Other members of the school community can view the user's permitted profile information.
+- The user's display name, profile photo, bio and other information approved for sharing may be visible.
+- Posts and activity are visible only according to their individual privacy settings.
+
+**2. Private Profile**
+
+- Only authorized or approved viewers can access restricted profile information.
+- The user can choose who is allowed to view their profile, depending on CLICK's final design.
+- Private information and restricted activity remain hidden from unauthorized users.
+
+### Interface Example
+
+```
+PROFILE VISIBILITY
+
+Who can view your profile?
+
+( ) Public
+    Allow school community members to view
+    your permitted profile information.
+
+( ) Private
+    Restrict access to your profile information.
+
+             [Save Changes]
+```
+
+### How It Works
+
+```
+User Opens Settings
+        ↓
+Privacy & Visibility
+        ↓
+Select Public or Private
+        ↓
+Save Changes
+        ↓
+Backend Updates Visibility Setting
+        ↓
+CLICK Enforces Access Permissions
+```
+
+### Important Privacy Rules
+
+- Users should be able to change their visibility setting whenever they want.
+- Changes should take effect across the application, including profile views and other places where profile information appears.
+- Private profiles must not expose restricted information through search results, groups or other platform features.
+- Official school information may still be accessible to authorized school administrators when necessary.
+- Public profiles should not automatically expose passwords, private messages, contact details or other sensitive information.
+
+**Key principle:** Users decide how discoverable their profiles are, while CLICK protects sensitive information regardless of whether a profile is public or private.
+
+One important distinction: Public doesn't mean all information is visible. It means the profile is discoverable and its permitted information can be viewed. Even public profiles should protect sensitive details.
