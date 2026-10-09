@@ -1279,3 +1279,573 @@ The CLICK safety architecture should ultimately follow these principles:
 The goal is not simply to remove bad content.
 
 The goal is to build a **controlled, accountable, privacy-aware safety system** that helps CLICK protect its community while giving authorized people the tools to review, respond, escalate, and correct mistakes.
+
+
+
+
+
+
+
+CLICK — Moderation, Reporting & Safety
+
+Privacy-Protecting Chat Monitoring and Student Safety Architecture
+
+1. The Overall Idea
+
+The Moderation, Reporting & Safety system is responsible for keeping CLICK a safe environment for students while protecting their privacy.
+
+The system should allow students to report inappropriate posts, comments, users and messages. It should also detect cuss words and other inappropriate language in private chats and notify authorized moderators or the school administrator.
+
+The most important rule is that private chat threads must remain private. Moderators and the school administrator must not be able to open, browse or read entire conversations. If inappropriate language is detected, they should see only the particular text that triggered the alert, the people involved, their classes and the reason for the alert.
+
+This follows the broader child-online-safety principle of combining effective reporting and protection with privacy safeguards. UNICEF's child protection guidance discusses the need for accessible reporting mechanisms and clear response procedures.
+
+2. Main Safety Architecture
+
+CLICK Safety should contain these main systems:
+
+CLICK SAFETY SYSTEM
+│
+├── 1. REPORTING SYSTEM
+│   ├── Report a Post
+│   ├── Report a Comment
+│   ├── Report a User
+│   ├── Report a Group
+│   └── Report a Message
+│
+├── 2. CHAT LANGUAGE DETECTION
+│   ├── Cuss Word Detection
+│   ├── Inappropriate Language Detection
+│   ├── Threat and Harassment Detection
+│   └── Safety Alert Generation
+│
+├── 3. STUDENT PROTECTION
+│   ├── Block Users
+│   ├── Mute Users
+│   ├── Hide or Remove Content
+│   └── Restrict Accounts
+│
+├── 4. MODERATION ENGINE
+│   ├── Review Alerts
+│   ├── Review Reports
+│   ├── Issue Warnings
+│   ├── Apply Restrictions
+│   └── Escalate Serious Cases
+│
+├── 5. PRIVACY CONTROL
+│   ├── Prevent Chat Thread Access
+│   ├── Show Only Flagged Text
+│   ├── Restrict Sensitive Information
+│   └── Record Authorized Access
+│
+└── 6. SAFETY RECORDS
+    ├── Reports
+    ├── Flagged Text Excerpts
+    ├── Moderator Decisions
+    └── Appeals and Audit Logs
+
+The privacy control system must work across the entire architecture, not just on the moderator dashboard.
+
+3. Reporting System
+
+Students should be able to report content or behaviour that violates CLICK's safety rules.
+
+What students can report
+
+Posts and comments
+
+Inappropriate images or videos
+
+Bullying or harassment
+
+Threats or dangerous behaviour
+
+Hate speech or discrimination
+
+Impersonation
+
+Spam or suspicious links
+
+Inappropriate private messages
+
+Groups that repeatedly violate safety rules
+
+Report interface
+
+┌─────────────────────────────────┐
+│          REPORT CONTENT         │
+├─────────────────────────────────┤
+│ Why are you reporting this?     │
+│                                 │
+│ ○ Bullying or harassment        │
+│ ○ Cuss words or inappropriate  │
+│   language                      │
+│ ○ Threats or dangerous behaviour│
+│ ○ Hate or discrimination        │
+│ ○ Spam or suspicious links      │
+│ ○ Impersonation                 │
+│ ○ Other                         │
+│                                 │
+│ Additional details (optional)   │
+│ [_____________________________] │
+│                                 │
+│       [Cancel] [Submit Report]  │
+└─────────────────────────────────┘
+
+The student who submits a report should receive confirmation. They should also be able to check whether their report is pending, under review or resolved without seeing private information about another student's disciplinary record.
+
+4. Private Chat Monitoring — The Most Important Feature
+
+CLICK should include a targeted chat-language detection system.
+
+Its purpose is to detect potentially inappropriate language without giving moderators or the school administrator access to private conversations.
+
+How it should work
+
+Two students exchange private messages.
+
+CLICK's automated safety system checks the message text against its safety rules.
+
+If the message contains a recognised cuss word or potentially inappropriate language, the system generates an alert.
+
+The alert contains only the specific message text that triggered the alert.
+
+The alert identifies the sender, recipient and their respective classes.
+
+An authorized moderator or school administrator reviews the limited alert information.
+
+If necessary, the reviewer can issue a warning, apply an appropriate restriction or escalate a serious concern.
+
+The system must not display the full conversation, surrounding messages, chat history, or a button that opens the private chat thread.
+
+Example of a safety alert
+
+┌───────────────────────────────────────────┐
+│        CLICK SAFETY ALERT                 │
+├───────────────────────────────────────────┤
+│ Alert type: Inappropriate language        │
+│ Status: Pending review                    │
+│                                           │
+│ Sender: Student A                         │
+│ Sender's class: JSS 3A                    │
+│ Recipient: Student B                      │
+│ Recipient's class: JSS 3B                 │
+│                                           │
+│ Flagged message text only:                │
+│ " [only the flagged message text] "       │
+│                                           │
+│ Detection reason: Cuss word detected      │
+│                                           │
+│ [Dismiss] [Issue Warning] [Escalate]      │
+└───────────────────────────────────────────┘
+
+The names and classes above are examples. The actual system would retrieve the correct details from CLICK's student records.
+
+The alert should not include any other messages from either student's conversation. If only part of a message contains the flagged language, the system could show just that portion, provided enough context remains to understand what triggered the alert.
+
+What moderators and administrators must not see
+
+The complete chat thread
+
+Messages sent before or after the flagged message
+
+Unrelated private conversations
+
+A student's entire chat history
+
+Private messages that did not trigger an alert
+
+Unnecessary personal information
+
+The moderator dashboard should contain no general-purpose private-chat viewer. Access restrictions must be enforced by the backend, not simply by hiding buttons in the interface.
+
+5. How the Chat Detection System Should Work
+
+The detection system could use a combination of methods.
+
+Option A — Word and phrase list
+
+CLICK checks messages against an approved list of cuss words and prohibited expressions.
+
+Advantages:
+
+Easier to build
+
+Fast and relatively inexpensive
+
+Suitable for an early version of CLICK
+
+Limitations:
+
+Slang and spelling variations may be missed.
+
+Some words may be used jokingly or without harmful intent.
+
+A list alone cannot reliably understand context.
+
+Option B — Automated language classification
+
+A language-classification model assesses whether a message may contain inappropriate language, harassment or threats.
+
+Advantages:
+
+Can potentially recognise more variations and expressions
+
+Can distinguish between different types of safety concerns more effectively than a simple word list
+
+Limitations:
+
+May make mistakes.
+
+Requires testing, ongoing improvement and careful handling of student data.
+
+Should not automatically decide that a student deserves punishment.
+
+Option C — A combined approach
+
+Use a word and phrase list for clear matches, supported by a classifier for more complex cases.
+
+This is a reasonable direction to investigate for CLICK. In all cases, a detected word should be treated as a potential violation, not automatic proof of misconduct. Context matters, and students should have a way to challenge an incorrect decision.
+
+6. What Happens After an Alert?
+
+The alert should enter a separate moderation queue rather than granting access to the chat.
+
+Student sends a message
+          │
+          ▼
+Automated safety check
+          │
+          ▼
+Potentially inappropriate language detected?
+          │
+     ┌────┴─────┐
+     │          │
+     No        Yes
+     │          │
+     ▼          ▼
+Normal chat   Create limited
+processing    safety alert
+                │
+                ▼
+        Authorized reviewer
+                │
+                ▼
+        Assess the alert
+                │
+       ┌────────┼─────────┐
+       │        │         │
+       ▼        ▼         ▼
+    Dismiss   Warning   Escalate
+       │        │         │
+       └────────┼─────────┘
+                ▼
+        Record the decision
+
+The system should distinguish between ordinary profanity, repeated inappropriate language, targeted harassment and credible threats. These situations may require different responses.
+
+A single detected word should not automatically result in suspension. Repeated or serious behaviour may justify stronger action following school policy.
+
+7. Moderator Dashboard
+
+The moderator dashboard should provide the tools needed to manage reports and safety alerts without exposing private conversations.
+
+CLICK MODERATION DASHBOARD
+│
+├── Reports
+├── Chat Safety Alerts
+├── Flagged Posts and Comments
+├── Cases
+├── Student Restrictions
+├── Appeals
+├── Safety Rules
+└── Moderation Audit Logs
+
+Each chat alert should show only:
+
+Alert ID and date
+
+Alert category and detection reason
+
+Exact flagged text or flagged portion
+
+Sender's name and class
+
+Recipient's name and class
+
+Review status
+
+Previous relevant moderation actions, if authorized and necessary
+
+Available actions
+
+The dashboard must not provide search or browsing features for private chat content.
+
+Possible moderator actions
+
+Action
+
+Purpose
+
+Dismiss alert
+
+The detection was incorrect or did not violate policy.
+
+Issue warning
+
+Remind a student of CLICK's language rules.
+
+Restrict an account
+
+Temporarily limit certain activities when justified.
+
+Escalate a case
+
+Refer serious or repeated concerns to the designated school safeguarding staff.
+
+Record a decision
+
+Keep an accountable record of the action taken.
+
+The school administrator should have the permissions needed to oversee serious cases and moderation policy, but administrator status must not automatically grant access to private chat threads.
+
+8. Blocking and Muting Users
+
+Blocking and reporting should be separate actions.
+
+When a student blocks another user, CLICK could:
+
+Prevent the blocked user from starting new private chats with them.
+
+Restrict other direct interactions according to the platform's rules.
+
+Allow the student to unblock the person later.
+
+Keep the blocker's choice private where possible.
+
+Muting should silence notifications without necessarily preventing messages from being sent.
+
+Blocking a user should not automatically create a disciplinary report. A student may simply want to stop receiving messages. They should still be able to report threatening or inappropriate messages separately.
+
+9. Basic Safety Rules
+
+CLICK should publish clear, student-friendly safety rules:
+
+Treat other students with respect.
+
+Do not bully, threaten or harass others.
+
+Avoid abusive or inappropriate language.
+
+Do not share sexual, violent or otherwise prohibited content.
+
+Do not impersonate another person.
+
+Do not share another student's private information without permission.
+
+Do not spam or deliberately disrupt groups.
+
+Do not misuse reports to target other students.
+
+Respect other students' boundaries and blocking decisions.
+
+Follow the school's rules for using CLICK.
+
+The school should explain what happens when these rules are broken and provide a fair process for reviewing decisions.
+
+10. Database Architecture
+
+The safety system should be separated from the private messaging system.
+
+USERS
+├── Student Profiles
+├── Class Memberships
+├── Roles and Permissions
+└── Privacy Settings
+
+MESSAGING
+├── Private Messages
+├── Chat Memberships
+└── Message Delivery Records
+
+SAFETY
+├── Reports
+├── Safety Alerts
+├── Flagged Text Excerpts
+├── Moderation Cases
+├── Moderation Actions
+├── Restrictions
+├── Appeals
+└── Audit Logs
+
+Important data fields
+
+Safety Alerts
+
+Alert ID
+
+Triggering message ID, stored as a restricted internal reference if needed
+
+Flagged text excerpt
+
+Detection category
+
+Detection timestamp
+
+Sender ID
+
+Recipient ID
+
+Review status
+
+Student records
+
+Student ID
+
+Display name
+
+Class or year group
+
+Moderation Actions
+
+Action ID
+
+Related alert or report ID
+
+Authorized reviewer ID
+
+Action type
+
+Reason for the decision
+
+Timestamp
+
+The system should retrieve class details from authorized student records rather than relying on students to type their own class into a report.
+
+Privacy design choice: The alert record should contain only the minimum excerpt needed for review. The backend should not copy an entire message or conversation into the moderation database. If CLICK retains the original message in its messaging system, the moderation service must still be unable to retrieve the rest of the thread.
+
+11. Privacy and Security Architecture
+
+The following rules should be built into CLICK from the beginning.
+
+Rule 1 — No private-thread access
+
+Moderators and the school administrator cannot open private chats or search through chat histories.
+
+Rule 2 — Limited alert visibility
+
+Authorized reviewers can see only the flagged text, the people involved, their classes and the information needed to assess that specific alert.
+
+Rule 3 — Backend permission checks
+
+Every request for an alert must verify that the user has permission to access it. Hiding a page or button is not enough.
+
+Rule 4 — Limited data retention
+
+Keep flagged excerpts only as long as necessary under the school's approved safety and data-retention policy. Delete or anonymize them when they are no longer required, subject to applicable safeguarding obligations.
+
+Rule 5 — Audit logs
+
+Record which authorized staff member accessed an alert, what decision they made and when. Do not put full private conversations in the audit log.
+
+Rule 6 — Fair review
+
+Automated detection can be wrong. Give students an appropriate way to appeal warnings or restrictions and correct inaccurate records.
+
+Rule 7 — Clear communication
+
+Tell students that automated checks are used to detect certain inappropriate language, what information may be shown to authorized staff, and how alerts are handled. Do not claim that private messages are completely unmonitored if the system checks them for safety.
+
+12. How This Connects to Other CLICK Features
+
+Private Messaging: Sends messages through the messaging system, with the safety detector checking message text under the published policy.
+
+Student Profiles: Supplies verified names and classes for alerts.
+
+Reporting: Allows students to report harmful behaviour that automated detection may miss.
+
+Notifications: Alerts authorized staff when a new safety alert needs review.
+
+School Administration: Allows designated staff to handle serious cases without granting general access to private conversations.
+
+Account Settings: Provides blocking, muting and privacy controls.
+
+Audit Logs: Records moderation decisions and access to sensitive alert information.
+
+13. Suggested MVP Development Plan
+
+Phase 1 — Essential safety
+
+Report posts, comments and users.
+
+Block and mute users.
+
+Publish basic safety rules.
+
+Build a simple moderation dashboard.
+
+Enforce role-based permissions.
+
+Phase 2 — Targeted chat alerts
+
+Create an initial list of prohibited words and expressions.
+
+Check messages for potential matches.
+
+Display only the flagged text and the sender's and recipient's identities and classes.
+
+Prevent moderators and administrators from opening private chat threads.
+
+Add dismiss and warning actions.
+
+Phase 3 — Stronger moderation
+
+Add more detection categories.
+
+Add escalation for threats and repeated harassment.
+
+Add appeals and moderation audit logs.
+
+Test false positives and spelling variations.
+
+Establish data-retention rules and safeguarding procedures.
+
+Phase 4 — Improve detection
+
+Evaluate a language classifier if needed.
+
+Test accuracy across common slang and relevant languages.
+
+Measure false positives and missed detections.
+
+Improve the system based on reviewed cases while limiting access to student data.
+
+14. Questions for the Team to Decide
+
+Before finalizing the architecture, the team should discuss:
+
+Which words and categories should trigger an alert?
+
+Should every cuss word trigger an alert, or only words that meet the school's defined policy?
+
+Should the alert display the entire flagged message or only the offending phrase?
+
+Which designated moderators can see alerts, and which serious cases should go to the school administrator?
+
+What happens when a message is flagged incorrectly?
+
+How long should alert excerpts be retained?
+
+How should CLICK handle credible threats, targeted bullying or immediate safeguarding concerns?
+
+How will students be informed about chat-language detection?
+
+What appeal process should be available?
+
+How can the team test the system without exposing real students' private conversations?
+
+Final Architecture Principle
+
+CLICK should combine student reporting, targeted language detection, privacy protection and fair moderation.
+
+The central design decision is simple: moderators and the school administrator may review a safety alert, but they may not browse private conversations. They see only the flagged text, the people involved, their classes and the information necessary to respond. This keeps the system focused on student safety while reducing unnecessary access to private communications.
